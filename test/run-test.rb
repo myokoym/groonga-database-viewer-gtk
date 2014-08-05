@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+#
 # Copyright (C) 2014  Masafumi Yokoyama <myokoym@gmail.com>
 #
 # This library is free software; you can redistribute it and/or
@@ -14,12 +16,11 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-require "bundler/gem_tasks"
+require "test-unit"
+require "test/unit/notify"
 
-desc "Run test"
-task :test do
-  Bundler::GemHelper.install_tasks
-  ruby("test/run-test.rb")
-end
+base_dir = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+$LOAD_PATH.unshift(File.join(base_dir, "lib"))
+$LOAD_PATH.unshift(File.join(base_dir, "test"))
 
-task :default => :test
+exit Test::Unit::AutoRunner.run(true)

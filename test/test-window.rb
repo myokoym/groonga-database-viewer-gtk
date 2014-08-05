@@ -14,12 +14,28 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-require "bundler/gem_tasks"
+require "fileutils"
+require "groonga/database-viewer-gtk/window"
 
-desc "Run test"
-task :test do
-  Bundler::GemHelper.install_tasks
-  ruby("test/run-test.rb")
+class WindowTest < Test::Unit::TestCase
+  class DatabaseTest < self
+    def setup
+      @tmpdir_base = File.join(File.dirname(__FILE__), "tmp")
+      @tmpdir = File.join(@tmpdir_base, "database")
+      FileUtils.rm_rf(@tmpdir)
+      FileUtils.mkdir_p(@tmpdir)
+      @db_path = File.join(@tmpdir, "test.db")
+      Groonga::Database.create(:path => @db_path)
+    end
+
+    def teardown
+      FileUtils.rm_rf(@tmpdir)
+    end
+
+    def test_new
+      assert do
+        Groonga::DatabaseViewerGtk::Window.new(@db_path)
+      end
+    end
+  end
 end
-
-task :default => :test

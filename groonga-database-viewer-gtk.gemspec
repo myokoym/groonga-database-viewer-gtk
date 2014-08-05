@@ -46,6 +46,8 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency("rroonga")
   spec.add_runtime_dependency("gtk2")
 
+  spec.add_development_dependency("test-unit", ">= 3.0.0")
+  spec.add_development_dependency("test-unit-notify")
   spec.add_development_dependency("bundler")
   spec.add_development_dependency("rake")
 end
