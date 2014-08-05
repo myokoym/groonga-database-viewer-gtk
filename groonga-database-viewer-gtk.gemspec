@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.description = spec.summary
 
   spec.files = ["README.md", "Rakefile", "Gemfile", "#{spec.name}.gemspec"]
-  spec.files += "NEWS.md"
+  spec.files += ["NEWS.md"]
   spec.files += Dir.glob("lib/**/*.rb")
   spec.test_files += Dir.glob("test/**/*")
   Dir.chdir("bin") do
