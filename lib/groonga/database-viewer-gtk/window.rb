@@ -22,6 +22,7 @@ module Groonga
     class Window < Gtk::Window
       def initialize(db_path)
         super()
+        self.title = db_path
         set_default_size(640, 480)
         @grn_database = Database.open(db_path)
         signal_connect("destroy") do
