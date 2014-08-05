@@ -1,5 +1,7 @@
 # README
 
+[![Build Status](https://travis-ci.org/myokoym/groonga-database-viewer-gtk.png?branch=master)](https://travis-ci.org/myokoym/groonga-database-viewer-gtk)
+
 ## Name
 
 groonga-database-viewer-gtk
