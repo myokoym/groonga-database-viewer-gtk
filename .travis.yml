@@ -1,0 +1,18 @@
+env:
+  global:
+    - DISPLAY=":99.0"
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1
+  - ruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+  fast_finish: true
+before_install:
+  - curl --silent --location https://github.com/groonga/groonga/raw/master/data/travis/setup.sh | sh
+before_script:
+  - sh -e /etc/init.d/xvfb start
+after_script:
+  - sh -e /ext/init.d/xvfb stop
