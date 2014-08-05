@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["Masafumi Yokoyama"]
   spec.email = ["myokoym@gmail.com"]
 
-  spec.summary = %q{Graphical Database Viewer for Groonga by GTK+}
+  spec.summary = %q{a graphical database viewer for Groonga by GTK+ with Ruby.}
   spec.description = spec.summary
 
   spec.files = ["README.md", "Rakefile", "Gemfile", "#{spec.name}.gemspec"]

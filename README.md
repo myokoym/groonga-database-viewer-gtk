@@ -6,6 +6,14 @@
 
 groonga-database-viewer-gtk
 
+## Description
+
+a graphical database viewer for [Groonga][] by [GTK+][] with [Ruby][].
+
+[Groonga]:http://groonga.org/
+[GTK+]:http://www.gtk.org/
+[Ruby]:https://www.ruby-lang.org/
+
 ## Install
 
     $ gem install groonga-database-viewer-gtk
