@@ -26,6 +26,11 @@ class WindowTest < Test::Unit::TestCase
       FileUtils.mkdir_p(@tmpdir)
       @db_path = File.join(@tmpdir, "test.db")
       Groonga::Database.create(:path => @db_path)
+      Groonga::Schema.define do |schema|
+        schema.create_table("Texts", :type => :hash) do |table|
+          table.text("text")
+        end
+      end
     end
 
     def teardown
