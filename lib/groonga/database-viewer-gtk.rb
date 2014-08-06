@@ -14,5 +14,5 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-require "groonga/database_viewer_gtk/version"
-require "groonga/database_viewer_gtk/window"
+require "groonga/database-viewer-gtk/version"
+require "groonga/database-viewer-gtk/window"
