@@ -22,6 +22,8 @@ require "groonga/database-viewer-gtk/table"
 module Groonga
   module DatabaseViewerGtk
     class Window < Gtk::Window
+      RAW_QUERY_MODE = "--query"
+
       def initialize(db_path)
         super()
         self.title = db_path
@@ -59,6 +61,8 @@ module Groonga
       def select(column, word)
         if word.empty?
           query = nil
+        elsif column == RAW_QUERY_MODE
+          query = word
         elsif column == "_id"
           query = "#{column}:#{word}"
         else
@@ -127,6 +131,7 @@ module Groonga
           target.grn_table.columns.each do |column|
             @combo_box.append_text(column.local_name)
           end
+          @combo_box.append_text(RAW_QUERY_MODE)
           @combo_box.active = 1
         end
       end
