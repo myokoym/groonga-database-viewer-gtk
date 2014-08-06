@@ -47,6 +47,7 @@ module Groonga
         Gtk.main
       end
 
+      private
       def init_view(page_num)
         target = get_tree_view(page_num)
         return unless target
@@ -81,7 +82,6 @@ module Groonga
         return nil
       end
 
-      private
       def create_search_hbox
         hbox = Gtk::HBox.new
 
