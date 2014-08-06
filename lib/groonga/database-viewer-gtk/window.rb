@@ -71,7 +71,7 @@ module Groonga
         page_widget = @notebook.children[page_num]
         if page_widget.is_a?(Gtk::ScrolledWindow)
           page_widget.each do |child|
-            if child.is_a?(TreeView)
+            if child.is_a?(Table)
               return child
             end
           end
@@ -139,8 +139,8 @@ module Groonga
           scrolled_window = Gtk::ScrolledWindow.new
           scrolled_window.set_policy(:automatic, :automatic)
 
-          tree_view = TreeView.new(grn_table, @grn_database.path)
-          scrolled_window.add(tree_view)
+          table = Table.new(grn_table, @grn_database.path)
+          scrolled_window.add(table)
 
           label = Gtk::Label.new(grn_table.name)
           notebook.append_page(scrolled_window, label)
@@ -155,7 +155,7 @@ module Groonga
       end
     end
 
-    class TreeView < Gtk::TreeView
+    class Table < Gtk::TreeView
       ID_COLUMN_INDEX = 0
       KEY_COLUMN_INDEX = 1
 
