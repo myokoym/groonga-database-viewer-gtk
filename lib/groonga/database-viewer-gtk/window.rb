@@ -110,7 +110,7 @@ module Groonga
           @limit_combo.append_text(text)
         end
         @limit_combo.append_text("268,435,455")
-        @limit_combo.active = 0
+        @limit_combo.active = 2
         hbox.pack_end(@limit_combo, false, false, 4)
 
         label = Gtk::Label.new("Limit:")
