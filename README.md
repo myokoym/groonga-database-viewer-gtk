@@ -1,5 +1,6 @@
 # README
 
+[![Gem Version](https://badge.fury.io/rb/groonga-database-viewer-gtk.svg)](http://badge.fury.io/rb/groonga-database-viewer-gtk)
 [![Build Status](https://travis-ci.org/myokoym/groonga-database-viewer-gtk.png?branch=master)](https://travis-ci.org/myokoym/groonga-database-viewer-gtk)
 
 ## Name
