@@ -20,42 +20,6 @@ module Groonga
   module DatabaseViewerGtk
     class Clipboard
       class << self
-        def watch
-          current_text = get
-          GLib::Timeout.add(500) do
-            text = get
-            if current_text != text
-              yield(text)
-              current_text = text
-            end
-            true
-          end
-
-          begin
-            Gtk.main
-          rescue Interrupt => e
-            $stderr.puts(e.message)
-          end
-        end
-
-        def get
-          if /darwin/ =~ RUBY_PLATFORM
-            `pbpaste`
-          else
-            clipboard.wait_for_text
-          end
-        end
-
-        def set(text)
-          copy_to_clipboard(text)
-
-          # workaround for CLI
-          GLib::Timeout.add(1) do
-            Gtk.main_quit
-          end
-          Gtk.main
-        end
-
         def copy_to_clipboard(text)
           if /darwin/ =~ RUBY_PLATFORM
             require "tempfile"
