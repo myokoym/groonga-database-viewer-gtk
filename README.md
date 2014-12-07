@@ -23,6 +23,16 @@ a graphical database viewer for [Groonga][] by [GTK+][] with [Ruby][].
 
     $ groonga-database-viewer-gtk DB_PATH
 
+### Options
+
+    $ groonga-database-viewer-gtk -h
+    Usage: groonga-database-viewer-gtk [OPTIONS] DB_PATH
+            --wrap_width=WIDTH           Set wrap width to columns
+
+### For example
+
+    $ groonga-database-viewer-gtk --wrap_width=320 ~/.milkode/db/milkode.db
+
 ## Authors
 
 * Masafumi Yokoyama `<myokoym@gmail.com>`
