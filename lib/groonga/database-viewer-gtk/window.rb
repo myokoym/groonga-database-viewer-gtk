@@ -18,6 +18,7 @@ require "groonga"
 require "gtk2"
 
 require "groonga/database-viewer-gtk/table"
+require "groonga/database-viewer-gtk/clipboard"
 
 module Groonga
   module DatabaseViewerGtk
@@ -148,6 +149,11 @@ module Groonga
 
           table = Table.new(grn_table, @grn_database.path, options)
           scrolled_window.add(table)
+
+          table.signal_connect("row-activated") do |tree_view, path, column|
+            Clipboard.copy_to_clipboard(table.selected_text)
+          end
+
 
           label = Gtk::Label.new(grn_table.name)
           notebook.append_page(scrolled_window, label)

@@ -44,6 +44,15 @@ module Groonga
         create_tree_view
       end
 
+      def selected_text
+        return nil unless selected_iter
+        selected_iter.get_value(@tooltip_column_index)
+      end
+
+      def selected_iter
+        selection.selected
+      end
+
       def create_tree_view
         self.rules_hint = true
 
