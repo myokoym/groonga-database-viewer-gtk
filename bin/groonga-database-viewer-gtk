@@ -16,6 +16,19 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+require "optparse"
+require "groonga/database-viewer-gtk/version"
 require "groonga/database-viewer-gtk/window"
 
-Groonga::DatabaseViewerGtk::Window.new(ARGV[0]).run
+usage = "Usage: groonga-database-viewer-gtk [OPTIONS] DB_PATH"
+parser = OptionParser.new(usage)
+parser.version = Groonga::DatabaseViewerGtk::VERSION
+
+options = {}
+parser.on("--wrap_width=WIDTH",
+          "Set wrap width to columns", Integer) do |width|
+  options[:wrap_width] = width
+end
+parser.parse!(ARGV)
+
+Groonga::DatabaseViewerGtk::Window.new(ARGV[0], options).run

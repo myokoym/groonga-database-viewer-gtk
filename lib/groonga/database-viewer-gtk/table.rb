@@ -28,10 +28,11 @@ module Groonga
       attr_reader :updated
       attr_reader :grn_table
 
-      def initialize(grn_table, db_path)
+      def initialize(grn_table, db_path, options={})
         super()
         @grn_table = grn_table
         @tooltip_column_index = @grn_table.columns.size + 2
+        @wrap_width = options[:wrap_width]
         @db_path = db_path
         @updated = false
         @threads = []
@@ -62,6 +63,7 @@ module Groonga
         append_column(gtk_column)
 
         renderer = Gtk::CellRendererText.new
+        renderer.wrap_width = @wrap_width if @wrap_width
         gtk_column.pack_start(renderer, :expand => false)
         gtk_column.add_attribute(renderer, :text, index)
       end

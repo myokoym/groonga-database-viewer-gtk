@@ -24,7 +24,7 @@ module Groonga
     class Window < Gtk::Window
       RAW_QUERY_MODE = "--query"
 
-      def initialize(db_path)
+      def initialize(db_path, options={})
         super()
         self.title = db_path
         set_default_size(640, 480)
@@ -40,7 +40,7 @@ module Groonga
         search_hbox = create_search_hbox
         vbox.pack_start(search_hbox, false, false, 4)
 
-        @notebook = create_notebook
+        @notebook = create_notebook(options)
         vbox.pack_start(@notebook, true, true, 0)
       end
 
@@ -136,7 +136,7 @@ module Groonga
         end
       end
 
-      def create_notebook
+      def create_notebook(options)
         notebook = Gtk::Notebook.new
 
         #label = Gtk::Label.new("Groonga")
@@ -146,7 +146,7 @@ module Groonga
           scrolled_window = Gtk::ScrolledWindow.new
           scrolled_window.set_policy(:automatic, :automatic)
 
-          table = Table.new(grn_table, @grn_database.path)
+          table = Table.new(grn_table, @grn_database.path, options)
           scrolled_window.add(table)
 
           label = Gtk::Label.new(grn_table.name)
