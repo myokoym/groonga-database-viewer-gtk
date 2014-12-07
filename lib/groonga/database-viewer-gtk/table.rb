@@ -94,8 +94,7 @@ module Groonga
         iter.set_value(ID_COLUMN_INDEX, grn_record._id)
         iter.set_value(KEY_COLUMN_INDEX, grn_record._key) if grn_record.respond_to?(:_key)
         @grn_table.columns.each_with_index do |grn_column, i|
-          value = grn_record[grn_column.local_name]
-          iter.set_value(i + 2, value.to_s)
+          value = nil
           if grn_column.index?
             ids = grn_column.search(grn_record._id).records.collect {|record| record._id}
             value = "#{ids.size}, #{ids.to_s}"
