@@ -43,6 +43,10 @@ module Groonga
 
         @notebook = create_notebook(options)
         vbox.pack_start(@notebook, true, true, 0)
+
+        label = Gtk::Label.new
+        label.text = "Double Click or Press Return: Copy to Clipboard"
+        vbox.pack_end(label, false, false, 0)
       end
 
       def run
