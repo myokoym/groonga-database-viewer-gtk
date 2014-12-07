@@ -16,6 +16,8 @@
 
 require "groonga"
 require "gtk2"
+require "erb"
+require "json"
 
 module Groonga
   module DatabaseViewerGtk
@@ -29,6 +31,7 @@ module Groonga
       def initialize(grn_table, db_path)
         super()
         @grn_table = grn_table
+        @tooltip_column_index = @grn_table.columns.size + 2
         @db_path = db_path
         @updated = false
         @threads = []
@@ -75,9 +78,11 @@ module Groonga
                        end
         column_types.unshift(String)   # _key
         column_types.unshift(Integer)  # _id
+        column_types.push(String)      # TOOLTIP
 
         model = Gtk::ListStore.new(*column_types)
         self.model = model
+        self.tooltip_column = @tooltip_column_index
 
         thread = Thread.new do
           each_records(limit, query).each do |grn_record|
@@ -90,9 +95,14 @@ module Groonga
       end
 
       def load_record(model, grn_record)
+        tooltips = {}
         iter = model.append
         iter.set_value(ID_COLUMN_INDEX, grn_record._id)
-        iter.set_value(KEY_COLUMN_INDEX, grn_record._key) if grn_record.respond_to?(:_key)
+        tooltips["_id"] = grn_record._id
+        if grn_record.respond_to?(:_key)
+          iter.set_value(KEY_COLUMN_INDEX, grn_record._key)
+          tooltips["_key"] = grn_record._key
+        end
         @grn_table.columns.each_with_index do |grn_column, i|
           value = nil
           if grn_column.index?
@@ -101,9 +111,13 @@ module Groonga
           else
             value = grn_record[grn_column.local_name].to_s
           end
+          tooltips[grn_column.local_name] = value
           iter.set_value(2 + i, value)
           GC.start if i % 100 == 0
         end
+        tooltip_json = tooltips.to_json
+        escaped_tooltip_json = ERB::Util.html_escape(tooltip_json)
+        iter.set_value(@tooltip_column_index, escaped_tooltip_json)
       end
 
       def each_records(limit, query=nil)
