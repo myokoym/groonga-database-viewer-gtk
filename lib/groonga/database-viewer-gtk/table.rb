@@ -16,7 +16,7 @@
 
 require "groonga"
 require "gtk2"
-require "erb"
+require "cgi"
 require "json"
 
 module Groonga
@@ -46,7 +46,8 @@ module Groonga
 
       def selected_text
         return nil unless selected_iter
-        selected_iter.get_value(@tooltip_column_index)
+        escaped_text = selected_iter.get_value(@tooltip_column_index)
+        CGI.unescapeHTML(escaped_text)
       end
 
       def selected_iter
@@ -127,7 +128,7 @@ module Groonga
           GC.start if i % 100 == 0
         end
         tooltip_json = tooltips.to_json
-        escaped_tooltip_json = ERB::Util.html_escape(tooltip_json)
+        escaped_tooltip_json = CGI.escapeHTML(tooltip_json)
         iter.set_value(@tooltip_column_index, escaped_tooltip_json)
       end
 
