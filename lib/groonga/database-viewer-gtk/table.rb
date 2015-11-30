@@ -96,7 +96,7 @@ module Groonga
         self.model = model
         self.tooltip_column = @tooltip_column_index
 
-        thread = Thread.new do
+        thread = ::Thread.new do
           each_records(limit, query).each do |grn_record|
             load_record(model, grn_record)
           end
