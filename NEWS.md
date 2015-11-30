@@ -1,5 +1,12 @@
 # NEWS
 
+## 0.0.4: 2015-11-30
+
+### Changes
+
+  * Improvements
+    * Support Rroonga 5.0.5 or later.
+
 ## 0.0.3: 2014-12-07
 
 ### Changes
