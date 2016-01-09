@@ -1,5 +1,12 @@
 # NEWS
 
+## 0.0.5: 2016-01-09
+
+### Changes
+
+  * Improvements
+    * Supported integer type for `_key` of a table.
+
 ## 0.0.4: 2015-11-30
 
 ### Changes
