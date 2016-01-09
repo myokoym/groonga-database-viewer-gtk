@@ -1,4 +1,4 @@
-# Copyright (C) 2014  Masafumi Yokoyama <myokoym@gmail.com>
+# Copyright (C) 2014-2016  Masafumi Yokoyama <myokoym@gmail.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -112,8 +112,9 @@ module Groonga
         iter.set_value(ID_COLUMN_INDEX, grn_record._id)
         tooltips["_id"] = grn_record._id
         if grn_record.respond_to?(:_key)
-          iter.set_value(KEY_COLUMN_INDEX, grn_record._key)
-          tooltips["_key"] = grn_record._key
+          key = grn_record._key.to_s
+          iter.set_value(KEY_COLUMN_INDEX, key)
+          tooltips["_key"] = key
         end
         @grn_table.columns.each_with_index do |grn_column, i|
           value = nil
