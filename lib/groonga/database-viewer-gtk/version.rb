@@ -1,4 +1,4 @@
-# Copyright (C) 2014-2015  Masafumi Yokoyama <myokoym@gmail.com>
+# Copyright (C) 2014-2016  Masafumi Yokoyama <myokoym@gmail.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -16,6 +16,6 @@
 
 module Groonga
   module DatabaseViewerGtk
-    VERSION = "0.0.5"
+    VERSION = "0.0.6"
   end
 end
